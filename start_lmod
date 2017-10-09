@@ -1,0 +1,2 @@
+source /home/neo/.local/lmod/lmod/init/bash
+module use $HOME/.local/easybuild/modules/all
