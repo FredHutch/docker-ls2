@@ -18,7 +18,7 @@ WORKDIR /home/neo
 SHELL ["/bin/bash", "-c"]
 
 # set up Lmod (newer version than Ubuntu repos provide
-RUN LMOD_VER="7.7.3" curl -L -o Lmod-${LMOD_VER}.tar.gz https://github.com/TACC/Lmod/archive/${LMOD_VER}.tar.gz && \
+RUN LMOD_VER="7.7.3"; curl -L -o Lmod-${LMOD_VER}.tar.gz https://github.com/TACC/Lmod/archive/${LMOD_VER}.tar.gz && \
     tar -xzf Lmod-${LMOD_VER}.tar.gz && \
     cd Lmod-${LMOD_VER} && \
     ./configure --prefix=/home/neo/.local --with-tcl=no && \
@@ -36,5 +36,6 @@ ENV EASYBUILD_MODULE_SYNTAX=Lua
 RUN curl -O https://raw.githubusercontent.com/easybuilders/easybuild-framework/develop/easybuild/scripts/bootstrap_eb.py && python bootstrap_eb.py $EASYBUILD_PREFIX && rm bootstrap_eb.py
 
 # install easybuild software
+COPY easybuild-life-sciences/fh_easyconfigs/unixODBC-2.3.4-foss-2016b.eb .
 COPY easybuild-life-sciences/fh_easyconfigs/R-3.4.2-foss-2016b-fh1.eb .
 RUN ml EasyBuild && eb R-3.4.2-foss-2016b-fh1.eb --robot
