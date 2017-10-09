@@ -1,2 +1,4 @@
+# activate Lmod (Environment Modules) inside container
+# this is sourced via BASH_ENV
 source /home/neo/.local/lmod/lmod/init/bash
 module use $HOME/.local/easybuild/modules/all
