@@ -36,5 +36,5 @@ ENV EASYBUILD_MODULE_SYNTAX=Lua
 RUN curl -O https://raw.githubusercontent.com/easybuilders/easybuild-framework/develop/easybuild/scripts/bootstrap_eb.py && python bootstrap_eb.py $EASYBUILD_PREFIX && rm bootstrap_eb.py
 
 # install easybuild software
-RUN ml EasyBuild && eb foss-2016b.eb --robot
-
+COPY easybuild-life-sciences/fh_easyconfigs/R-3.4.2-foss-2016b-fh1.eb .
+RUN ml EasyBuild && eb R-3.4.2-foss-2016b-fh1.eb --robot
