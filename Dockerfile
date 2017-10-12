@@ -38,5 +38,5 @@ RUN curl -O https://raw.githubusercontent.com/easybuilders/easybuild-framework/d
 
 # install easybuild software
 COPY easybuild-life-sciences/fh_easyconfigs/*.eb /home/neo/fh_easyconfigs/
-COPY easybuild-list-sciences/sources/* /home/neo/.local/easybuild/sources/
+COPY easybuild-life-sciences/sources/* /home/neo/.local/easybuild/sources/
 RUN ml EasyBuild && eb R-3.4.2-foss-2016b-fh1.eb
