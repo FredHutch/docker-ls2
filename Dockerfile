@@ -33,9 +33,9 @@ ENV BASH_ENV=/home/neo/.start_lmod
 ENV EASYBUILD_PREFIX=/home/neo/.local/easybuild
 ENV EASYBUILD_MODULES_TOOL=Lmod
 ENV EASYBUILD_MODULE_SYNTAX=Lua
+ENV EASYBUILD_ROBOT_PATHS=:/home/neo/fh_easyconfigs
 RUN curl -O https://raw.githubusercontent.com/easybuilders/easybuild-framework/develop/easybuild/scripts/bootstrap_eb.py && python bootstrap_eb.py $EASYBUILD_PREFIX && rm bootstrap_eb.py
 
 # install easybuild software
-COPY easybuild-life-sciences/fh_easyconfigs/unixODBC-2.3.4-foss-2016b.eb .
-COPY easybuild-life-sciences/fh_easyconfigs/R-3.4.2-foss-2016b-fh1.eb .
-RUN ml EasyBuild && eb R-3.4.2-foss-2016b-fh1.eb --robot
+COPY easybuild-life-sciences/fh_easyconfigs/*.eb /home/neo/fh_easyconfigs/
+RUN ml EasyBuild
