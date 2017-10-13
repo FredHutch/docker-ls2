@@ -37,5 +37,6 @@ ENV EASYBUILD_ROBOT_PATHS=:/home/neo/fh_easyconfigs
 RUN curl -O https://raw.githubusercontent.com/easybuilders/easybuild-framework/develop/easybuild/scripts/bootstrap_eb.py && python bootstrap_eb.py $EASYBUILD_PREFIX && rm bootstrap_eb.py
 
 # install easybuild software
+RUN cd /home/neo/.local/easybuild/sources && wget -c --no-cookies --no-check-certificate --header "Cookie: oraclelicense=accept-securebackup-cookie"  http://download.oracle.com/otn-pub/java/jdk/8u92-b14/jdk-8u92-linux-x64.tar.gz
 COPY easybuild-life-sciences/fh_easyconfigs/*.eb /home/neo/fh_easyconfigs/
-RUN ml EasyBuild
+RUN ml EasyBuild && eb R-3.4.2-foss-2016b-fh1.eb
