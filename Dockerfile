@@ -38,7 +38,7 @@ RUN curl -O https://raw.githubusercontent.com/easybuilders/easybuild-framework/d
 
 # ugly hack as dockerhub autobuild doesn't support git lfs and Oracle removed old Java downloads
 RUN mkdir /home/neo/sources
-COPY sources/* /home/neo/sources
+COPY sources/* /home/neo/sources/
 RUN cat /home/neo/sources/jdk-8u92-linux-x64* >> /home/neo/.local/easybuild/sources/jdk-8u92-linux-x64.tar.gz
 
 # install easybuild software
