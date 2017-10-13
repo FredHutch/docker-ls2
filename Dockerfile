@@ -31,16 +31,15 @@ ENV BASH_ENV=/home/neo/.start_lmod
 
 # set up easybuild
 ENV EASYBUILD_PREFIX=/home/neo/.local/easybuild
-ENV EASYBUILD_SOURCEPATH=${EASYBUILD_PREFIX}/sources
 ENV EASYBUILD_MODULES_TOOL=Lmod
 ENV EASYBUILD_MODULE_SYNTAX=Lua
 ENV EASYBUILD_ROBOT_PATHS=:/home/neo/fh_easyconfigs
 RUN curl -O https://raw.githubusercontent.com/easybuilders/easybuild-framework/develop/easybuild/scripts/bootstrap_eb.py && python bootstrap_eb.py $EASYBUILD_PREFIX && rm bootstrap_eb.py
 
 # ugly hack as dockerhub autobuild doesn't support git lfs and Oracle removed old Java downloads
-RUN mkdir ${EASYBUILD_SOURCEPATH}
-COPY sources/* ${EASYBUILD_SOURCEPATH}/
-RUN cd ${EASYBUILD_SOURCEPATH} && \
+RUN mkdir /home/neo/.local/easybuild/sources
+COPY sources/* /home/neo/.local/easybuild/sources/
+RUN cd /home/neo/.local/easybuild/sources/ && \
     cat jdk-8u92-linux-x64a* >> jdk-8u92-linux-x64.tar.gz && \
     rm jdk-8u92-linux-x64a*
 
