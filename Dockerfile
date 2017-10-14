@@ -33,7 +33,7 @@ ENV BASH_ENV=/home/neo/.start_lmod
 ENV EASYBUILD_PREFIX=/home/neo/.local/easybuild
 ENV EASYBUILD_MODULES_TOOL=Lmod
 ENV EASYBUILD_MODULE_SYNTAX=Lua
-ENV EASYBUILD_ROBOT_PATHS=:/home/neo/fh_easyconfigs
+ENV EASYBUILD_ROBOT_PATHS=:/home/neo/fh_easyconfigs:
 RUN curl -O https://raw.githubusercontent.com/easybuilders/easybuild-framework/develop/easybuild/scripts/bootstrap_eb.py && python bootstrap_eb.py $EASYBUILD_PREFIX && rm bootstrap_eb.py
 
 # ugly hack as dockerhub autobuild doesn't support git lfs and Oracle removed old Java downloads
