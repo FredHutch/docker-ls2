@@ -33,7 +33,7 @@ ENV BASH_ENV=/home/neo/.start_lmod
 ENV EASYBUILD_PREFIX=/home/neo/.local/easybuild
 ENV EASYBUILD_MODULES_TOOL=Lmod
 ENV EASYBUILD_MODULE_SYNTAX=Lua
-ENV EASYBUILD_ROBOT_PATHS=:/home/neo/fh_easyconfigs:
+ENV EASYBUILD_ROBOT_PATHS=:/home/neo/.local/fh_easyconfigs
 RUN curl -O https://raw.githubusercontent.com/easybuilders/easybuild-framework/develop/easybuild/scripts/bootstrap_eb.py && python bootstrap_eb.py $EASYBUILD_PREFIX && rm bootstrap_eb.py
 
 # ugly hack as dockerhub autobuild doesn't support git lfs and Oracle removed old Java downloads
@@ -44,5 +44,5 @@ RUN cd /home/neo/.local/easybuild/sources/ && \
     rm jdk-8u92-linux-x64a*
 
 # install easybuild software
-COPY easybuild-life-sciences/fh_easyconfigs/*.eb /home/neo/fh_easyconfigs/
-RUN ml EasyBuild && eb R-3.4.2-foss-2016b-fh1.eb
+COPY easybuild-life-sciences/fh_easyconfigs/*.eb /home/neo/.local/fh_easyconfigs/
+RUN ml EasyBuild && eb foss-2016b.eb --robot

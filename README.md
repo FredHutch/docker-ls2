@@ -8,3 +8,25 @@ This container was built to duplicate our datacenter software stack so researche
 Use instructions will be posted soon.
 
 Initially, this container is intended for AWS Batch use.
+
+Software packages to add:
+
+- [ ] Python 2
+- [ ] Python 3
+- [ ] R (w/Bioconductor)
+- [ ] BEDTools
+- [ ] SAMtools
+- [ ] BWA
+- [ ] TopHat
+- [ ] FastQC
+- [ ] annovar
+- [ ] sratoolkit
+- [ ] Bowtie(2)
+- [ ] seqmagick
+- [ ] BEAST(2)
+- [ ] picard
+- [ ] FastTree
+- [ ] Homer
+- [ ] vcftools
+- [ ] bcl2fastq
+- [ ] MUSCLE
