@@ -45,4 +45,6 @@ RUN cd /home/neo/.local/easybuild/sources/ && \
 
 # install easybuild software
 COPY easybuild-life-sciences/fh_easyconfigs/*.eb /home/neo/.local/fh_easyconfigs/
+RUN date
 RUN ml EasyBuild && eb foss-2016b.eb --robot
+RUN date
