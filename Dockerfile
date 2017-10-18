@@ -36,6 +36,5 @@ ENV EASYBUILD_MODULE_SYNTAX=Lua
 ENV EASYBUILD_ROBOT_PATHS=:/home/neo/.local/fh_easyconfigs
 RUN curl -O https://raw.githubusercontent.com/easybuilders/easybuild-framework/develop/easybuild/scripts/bootstrap_eb.py && python bootstrap_eb.py $EASYBUILD_PREFIX && rm bootstrap_eb.py
 
-
 # build toolchain
 RUN ml EasyBuild && eb foss-2016b.eb --robot
