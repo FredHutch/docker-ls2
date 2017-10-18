@@ -9,7 +9,9 @@ RUN apt-get update && apt-get install -y \
     lua-filesystem \
     lua-term \
     libibverbs-dev \
-    libssl-dev
+    libssl-dev \
+    unzip \
+    awscli
 
 # set up our user
 RUN useradd -ms /bin/bash neo
@@ -27,6 +29,7 @@ RUN LMOD_VER="7.7.3"; curl -L -o Lmod-${LMOD_VER}.tar.gz https://github.com/TACC
     rm -r Lmod-${LMOD_VER} && \
     rm Lmod-${LMOD_VER}.tar.gz
 COPY start_lmod /home/neo/.start_lmod
+COPY fetch_and_run.sh /home/neo/fetch_and_run.sh
 ENV BASH_ENV=/home/neo/.start_lmod
 
 # set up easybuild
@@ -36,6 +39,15 @@ ENV EASYBUILD_MODULE_SYNTAX=Lua
 ENV EASYBUILD_ROBOT_PATHS=:/home/neo/.local/fh_easyconfigs
 RUN curl -O https://raw.githubusercontent.com/easybuilders/easybuild-framework/develop/easybuild/scripts/bootstrap_eb.py && python bootstrap_eb.py $EASYBUILD_PREFIX && rm bootstrap_eb.py
 
+# ugly hack as dockerhub autobuild doesn't support git lfs and Oracle removed old Java downloads
+RUN mkdir /home/neo/.local/easybuild/sources
+COPY sources/* /home/neo/.local/easybuild/sources/
+RUN cd /home/neo/.local/easybuild/sources/ && \
+    cat jdk-8u92-linux-x64a* >> jdk-8u92-linux-x64.tar.gz && \
+    rm jdk-8u92-linux-x64a*
 
-# build toolchain
-RUN ml EasyBuild && eb foss-2016b.eb --robot
+# install easybuild software
+COPY easybuild-life-sciences/fh_easyconfigs/*.eb /home/neo/.local/fh_easyconfigs/
+RUN ml EasyBuild && eb Java-1.8.0_92.eb
+RUN ml EasyBuild && eb picard-2.13.2-Java-1.8.0_92.eb
+ENTRYPOINT ["/home/neo/fetch_and_run.sh"]
